@@ -46,6 +46,8 @@
 // import 'package:grocery_admin/blocs/sign_in_bloc/sign_in_bloc.dart';
 // import 'package:grocery_admin/blocs/user_reports_bloc/user_report_product_bloc.dart';
 // import 'package:grocery_admin/blocs/user_reports_bloc/user_reports_bloc.dart';
+import 'package:grocery_admin/blocs/inventory_bloc/all_categories_bloc.dart';
+import 'package:grocery_admin/blocs/inventory_bloc/inventory_bloc.dart';
 import 'package:grocery_admin/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:grocery_admin/repositories/authentication_repository.dart';
 import 'package:grocery_admin/repositories/user_data_repository.dart';
@@ -62,6 +64,7 @@ import 'package:grocery_admin/screens/splash_screen.dart';
 // import 'blocs/products_bloc/add_new_product_bloc.dart';
 // import 'blocs/products_bloc/products_bloc.dart';
 // import 'blocs/push_notifications_bloc/push_notifications_bloc.dart';
+import 'blocs/inventory_bloc/low_inventory_bloc.dart';
 import 'screens/home_screen.dart';
 // import 'screens/initial_setup_screen.dart';
 import 'screens/sign_in_sign_up_screens/sign_in_screen.dart';
@@ -71,7 +74,7 @@ void main() async {
 
   // await Firebase.initializeApp();
 
-  //final UserDataRepository userDataRepository = UserDataRepository();
+  UserDataRepository userDataRepository = UserDataRepository();
   final AuthenticationRepository authenticationRepository =
       AuthenticationRepository();
 
@@ -138,21 +141,21 @@ void main() async {
         //     userDataRepository: userDataRepository,
         //   ),
         // ),
-        // BlocProvider<InventoryBloc>(
-        //   create: (context) => InventoryBloc(
-        //     userDataRepository: userDataRepository,
-        //   ),
-        // ),
-        // BlocProvider<LowInventoryBloc>(
-        //   create: (context) => LowInventoryBloc(
-        //     userDataRepository: userDataRepository,
-        //   ),
-        // ),
-        // BlocProvider<AllCategoriesBloc>(
-        //   create: (context) => AllCategoriesBloc(
-        //     userDataRepository: userDataRepository,
-        //   ),
-        // ),
+        BlocProvider<InventoryBloc>(
+          create: (context) => InventoryBloc(
+            userDataRepository: userDataRepository,
+          ),
+        ),
+        BlocProvider<LowInventoryBloc>(
+          create: (context) => LowInventoryBloc(
+            userDataRepository: userDataRepository,
+          ),
+        ),
+        BlocProvider<AllCategoriesBloc>(
+          create: (context) => AllCategoriesBloc(
+            userDataRepository: userDataRepository,
+          ),
+        ),
         // BlocProvider<MessagesBloc>(
         //   create: (context) => MessagesBloc(
         //     userDataRepository: userDataRepository,

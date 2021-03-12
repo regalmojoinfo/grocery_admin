@@ -30,7 +30,527 @@
 // import 'package:uuid/uuid.dart';
 // import 'package:http/http.dart' as http;
 
-// class UserDataProvider extends BaseUserDataProvider {
+import 'dart:convert';
+
+import 'package:grocery_admin/models/user_report.dart';
+import 'package:grocery_admin/models/user_analytics.dart';
+import 'package:grocery_admin/models/user.dart';
+import 'package:grocery_admin/models/seller_notification.dart';
+import 'package:grocery_admin/models/product_analytics.dart';
+import 'package:grocery_admin/models/product.dart';
+import 'package:grocery_admin/models/payment_methods.dart';
+import 'package:grocery_admin/models/order_analytics.dart';
+import 'package:grocery_admin/models/order.dart';
+import 'package:grocery_admin/models/message_analytics.dart';
+import 'package:grocery_admin/models/inventory_analytics.dart';
+import 'package:grocery_admin/models/delivery_user_analytics.dart';
+import 'package:grocery_admin/models/delivery_user.dart';
+import 'package:grocery_admin/models/coupon.dart';
+import 'package:grocery_admin/models/category.dart';
+import 'package:grocery_admin/models/cart_info.dart';
+import 'package:grocery_admin/models/admin.dart';
+import 'package:grocery_admin/providers/base_provider.dart';
+import 'package:http/http.dart' as http;
+
+class UserDataProvider extends BaseUserDataProvider {
+  String baseurl = "https://regalmojo.in";
+  @override
+  void dispose() {}
+  Category cat = Category();
+
+  @override
+  Future<bool> addNewCategory(Map category) async {
+    var data = {
+      "useModel": "12345",
+      "useWhere": {"status": 1},
+      "useSort": "ytrgfd",
+      "useMessage": "jhgfd Info",
+      "useData": {
+        "categoryName": "liukjyghf",
+        "profileImage": "jyhtgf.jpg",
+        "subCategory": [
+          {"name": "hgrfevd"}
+        ]
+      }
+    };
+
+    String url = "$baseurl/groceryServer/api/common/insertOne";
+
+    try {
+      var response = await http.post(url,
+          headers: {
+            'Authorization':
+                "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQwMjA0YjQ3MjMwMWZjOTVlMzM4OGYiLCJsb2dpblR5cGUiOiJBZG1pbiIsIm5ld0RiTmFtZSI6Imdyb2NlcnktcmVnYWwiLCJpYXQiOjE2MTU0NDQ4NDF9.lBSLR9dI7CJ-5oVdJwJ8IxVMcDhBS88pKdnHiWSf5zI"
+          },
+          body: jsonEncode(data));
+      print(response.body);
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print(e.toString());
+      return false;
+    }
+  }
+//   @override
+//   Future<bool> addNewCategory(Map category) async {
+//     try {
+//       var uuid = Uuid().v4();
+//       StorageReference storageReference =
+//           firebaseStorage.ref().child('categoryImages/$uuid');
+//       StorageUploadTask storageUploadTask =
+//           storageReference.putFile(category['categoryImage']);
+//       StorageTaskSnapshot storageTaskSnapshot =
+//           await storageUploadTask.onComplete;
+//       var url = await storageTaskSnapshot.ref.getDownloadURL();
+
+//       var docId = Uuid().v4();
+
+//       db.collection(Paths.categoriesPath).doc(docId).set({
+//         'categoryName': category['categoryName'],
+//         'imageLink': url,
+//         'categoryId': docId,
+//         'subCategories': category['subCategories'],
+//       });
+//       return true;
+//     } catch (e) {
+//       print(e);
+//       return false;
+//     }
+//   }
+  @override
+  Future<bool> addNewProduct(Map product) async {
+    String url = "https://regalmojo.in/groceryServer/api/common/insertOne";
+    http.post(url);
+  }
+
+  @override
+  Future<bool> activateAdmin(String uid) {
+    // TODO: implement activateAdmin
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> activateDeliveryUser(String uid) {
+    // TODO: implement activateDeliveryUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> addNewAdmin(Map adminMap) {
+    // TODO: implement addNewAdmin
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> addNewCoupon(Map<String, dynamic> map) {
+    // TODO: implement addNewCoupon
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> addNewDeliveryUser(Map deliveryUserMap) {
+    // TODO: implement addNewDeliveryUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> blockUser(String uid) {
+    // TODO: implement blockUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> cancelOrder(Map cancelOrderMap) {
+    // TODO: implement cancelOrder
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> checkIfInitialSetupDone() {
+    // TODO: implement checkIfInitialSetupDone
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> checkIfNewAdmin(String uid) {
+    // TODO: implement checkIfNewAdmin
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deactivateAdmin(String uid) {
+    // TODO: implement deactivateAdmin
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deactivateDeliveryUser(String uid) {
+    // TODO: implement deactivateDeliveryUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deleteCategory(String categoryId) {
+    // TODO: implement deleteCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deleteProduct(String id) {
+    // TODO: implement deleteProduct
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> editCategory(Map category) {
+    // TODO: implement editCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> editCoupon(Map<String, dynamic> map) async {
+    // TODO: implement editCoupon
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> editDeliveryUser(Map deliveryUserMap) {
+    // TODO: implement editDeliveryUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> editProduct(Map product) {
+    // TODO: implement editProduct
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<DeliveryUser>> getActivatedDeliveryUsers() {
+    // TODO: implement getActivatedDeliveryUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<DeliveryUser>> getActiveDeliveryUsers() {
+    // TODO: implement getActiveDeliveryUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getActiveProducts() {
+    // TODO: implement getActiveProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<GroceryUser>> getActiveUsers() {
+    // TODO: implement getActiveUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Admin>> getAllAdmins() {
+    // TODO: implement getAllAdmins
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Map> getAllBanners() {
+    // TODO: implement getAllBanners
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Category>> getAllCategories() {
+    // TODO: implement getAllCategories
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Coupon>> getAllCoupons() {
+    // TODO: implement getAllCoupons
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<DeliveryUser>> getAllDeliveryUsers() {
+    // TODO: implement getAllDeliveryUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getAllMessages() {
+    // TODO: implement getAllMessages
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getAllProducts() {
+    // TODO: implement getAllProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<GroceryUser>> getAllUsers() {
+    // TODO: implement getAllUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<GroceryUser>> getBlockedUsers() {
+    // TODO: implement getBlockedUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> getCancelledOrders() {
+    // TODO: implement getCancelledOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<CartInfo> getCartInfo() {
+    // TODO: implement getCartInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<DeliveryUser>> getDeactivatedDeliveryUsers() {
+    // TODO: implement getDeactivatedDeliveryUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> getDeliveredOrders() {
+    // TODO: implement getDeliveredOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<DeliveryUserAnalytics> getDeliveryUserAnalytics() {
+    // TODO: implement getDeliveryUserAnalytics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getFeaturedProducts() {
+    // TODO: implement getFeaturedProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<DeliveryUser>> getInactiveDeliveryUsers() {
+    // TODO: implement getInactiveDeliveryUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getInactiveProducts() {
+    // TODO: implement getInactiveProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<GroceryUser>> getInactiveUsers() {
+    // TODO: implement getInactiveUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<InventoryAnalytics> getInventoryAnalytics() {
+    // TODO: implement getInventoryAnalytics
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<Product>> getLowInventoryProducts() {
+    List<Product> products;
+  }
+
+  @override
+  Stream<MessageAnalytics> getMessageAnalytics() {
+    // TODO: implement getMessageAnalytics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Admin> getMyAccountDetails() {
+    // TODO: implement getMyAccountDetails
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getNewMessages() {
+    // TODO: implement getNewMessages
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<Order>> getNewOrders() {
+    // TODO: implement getNewOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<SellerNotification> getNotifications() {
+    // TODO: implement getNotifications
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<OrderAnalytics> getOrderAnalytics() {
+    // TODO: implement getOrderAnalytics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> getOutForDeliveryOrders() {
+    // TODO: implement getOutForDeliveryOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PaymentMethods> getPaymentMethods() {
+    // TODO: implement getPaymentMethods
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> getPendingRefundOrders() {
+    // TODO: implement getPendingRefundOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> getProcessedOrders() {
+    // TODO: implement getProcessedOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<ProductAnalytics> getProductAnalytics() {
+    // TODO: implement getProductAnalytics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<DeliveryUser>> getReadyDeliveryUsers() {
+    // TODO: implement getReadyDeliveryUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getTrendingProducts() {
+    // TODO: implement getTrendingProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<UserAnalytics> getUserAnalytics() {
+    // TODO: implement getUserAnalytics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Product> getUserReportProduct(String id) {
+    // TODO: implement getUserReportProduct
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<UserReport>> getUserReports() {
+    // TODO: implement getUserReports
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> getUsersOrder(List orderIds) {
+    // TODO: implement getUsersOrder
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> initiateRefund(Map initiateRefundMap) {
+    // TODO: implement initiateRefund
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> markNotificationRead() {
+    // TODO: implement markNotificationRead
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> postAnswer(String id, String ans, String queId) {
+    // TODO: implement postAnswer
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> proceedInitialSetup(Map map) {
+    // TODO: implement proceedInitialSetup
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> proceedOrder(Map proceedOrderMap) {
+    // TODO: implement proceedOrder
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> sendNewNotification(Map map) {
+    // TODO: implement sendNewNotification
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> unblockUser(String uid) {
+    // TODO: implement unblockUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateAdminDetails(Map adminMap) {
+    // TODO: implement updateAdminDetails
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateBanners(Map bannersMap) {
+    // TODO: implement updateBanners
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateCartInfo(Map map) {
+    // TODO: implement updateCartInfo
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updateLowInventoryProduct(String id, int quantity) {
+    // TODO: implement updateLowInventoryProduct
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Order>> updateNewOrders(List<Order> allOrders) {
+    // TODO: implement updateNewOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> updatePaymentMethods(Map map) {
+    // TODO: implement updatePaymentMethods
+    throw UnimplementedError();
+  }
+}
 //   final FirebaseFirestore db = FirebaseFirestore.instance;
 //   // final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 //   // final FirebaseAuth mAuth = FirebaseAuth.instance;
@@ -330,8 +850,9 @@
 //   }
 
 //   @override
-//   Stream<InventoryAnalytics> getInventoryAnalytics() {
-//     InventoryAnalytics inventoryAnalytics;
+Stream<InventoryAnalytics> getInventoryAnalytics() {
+  InventoryAnalytics inventoryAnalytics;
+}
 
 //     try {
 //       DocumentReference documentReference =
