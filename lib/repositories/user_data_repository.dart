@@ -17,10 +17,21 @@
 // import 'package:grocery_admin/models/user.dart';
 // import 'package:grocery_admin/models/user_analytics.dart';
 // import 'package:grocery_admin/models/user_report.dart';
-// import 'package:grocery_admin/providers/user_data_provider.dart';
+import 'package:grocery_admin/models/category.dart';
+import 'package:grocery_admin/models/inventory_analytics.dart';
+import 'package:grocery_admin/models/product.dart';
+import 'package:grocery_admin/providers/user_data_provider.dart';
 // import 'package:grocery_admin/repositories/base_repository.dart';
 
-// class UserDataRepository extends BaseRepository {
+import 'package:grocery_admin/repositories/base_repository.dart';
+
+class UserDataRepository extends BaseRepository {
+  UserDataProvider userDataProvider = UserDataProvider();
+  @override
+  void dispose() {}
+  Future<bool> addNewCategory(Map<dynamic, dynamic> category) =>
+      userDataProvider.addNewCategory(category);
+
 //   UserDataProvider userDataProvider = UserDataProvider();
 
 //   @override
@@ -63,20 +74,20 @@
 //   Future<List<Product>> getFeaturedProducts() =>
 //       userDataProvider.getFeaturedProducts();
 
-//   Stream<List<Product>> getLowInventoryProducts() =>
-//       userDataProvider.getLowInventoryProducts();
+  Stream<List<Product>> getLowInventoryProducts() =>
+      userDataProvider.getLowInventoryProducts();
 
-//   Future<bool> updateLowInventoryProduct(String id, int quantity) =>
-//       userDataProvider.updateLowInventoryProduct(id, quantity);
+  Future<bool> updateLowInventoryProduct(String id, int quantity) =>
+      userDataProvider.updateLowInventoryProduct(id, quantity);
 
-//   Future<List<Category>> getAllCategories() =>
-//       userDataProvider.getAllCategories();
+  Future<List<Category>> getAllCategories() =>
+      userDataProvider.getAllCategories();
 
 //   Stream<ProductAnalytics> getProductAnalytics() =>
 //       userDataProvider.getProductAnalytics();
 
-//   Stream<InventoryAnalytics> getInventoryAnalytics() =>
-//       userDataProvider.getInventoryAnalytics();
+  Stream<InventoryAnalytics> getInventoryAnalytics() =>
+      userDataProvider.getInventoryAnalytics();
 
 //   Stream<MessageAnalytics> getMessageAnalytics() =>
 //       userDataProvider.getMessageAnalytics();
@@ -97,16 +108,16 @@
 //   Future<bool> addNewCategory(Map<dynamic, dynamic> category) =>
 //       userDataProvider.addNewCategory(category);
 
-//   Future<bool> editCategory(Map<dynamic, dynamic> category) =>
-//       userDataProvider.editCategory(category);
+  Future<bool> editCategory(Map<dynamic, dynamic> category) =>
+      userDataProvider.editCategory(category);
 
 //   Future<bool> postAnswer(String id, String ans, String queId) =>
 //       userDataProvider.postAnswer(id, ans, queId);
 
 //   Future<bool> deleteProduct(String id) => userDataProvider.deleteProduct(id);
 
-//   Future<bool> deleteCategory(String categoryId) =>
-//       userDataProvider.deleteCategory(categoryId);
+  Future<bool> deleteCategory(String categoryId) =>
+      userDataProvider.deleteCategory(categoryId);
 
 //   Future<List<GroceryUser>> getAllUsers() => userDataProvider.getAllUsers();
 
@@ -231,3 +242,4 @@
 //       userDataProvider.editCoupon(map);
 //   Future<List<Coupon>> getAllCoupons() => userDataProvider.getAllCoupons();
 // }
+}
