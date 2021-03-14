@@ -60,16 +60,16 @@ class UserDataProvider extends BaseUserDataProvider {
 
   @override
   Future<bool> addNewCategory(Map category) async {
-    var data = {
-      "useModel": "12345",
+    Map data = {
+      "useModel": "ProductCategory",
       "useWhere": {"status": 1},
-      "useSort": "ytrgfd",
-      "useMessage": "jhgfd Info",
+      "useSort": "categoryName",
+      "useMessage": "Category Info",
       "useData": {
-        "categoryName": "liukjyghf",
-        "profileImage": "jyhtgf.jpg",
+        "categoryName": "pepsi",
+        "profileImage": "image124.jpg",
         "subCategory": [
-          {"name": "hgrfevd"}
+          {"name": "pepsi"}
         ]
       }
     };
@@ -79,10 +79,12 @@ class UserDataProvider extends BaseUserDataProvider {
     try {
       var response = await http.post(url,
           headers: {
+            "Content-Type": "application/json",
             'Authorization':
                 "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQwMjA0YjQ3MjMwMWZjOTVlMzM4OGYiLCJsb2dpblR5cGUiOiJBZG1pbiIsIm5ld0RiTmFtZSI6Imdyb2NlcnktcmVnYWwiLCJpYXQiOjE2MTU0NDQ4NDF9.lBSLR9dI7CJ-5oVdJwJ8IxVMcDhBS88pKdnHiWSf5zI"
           },
-          body: jsonEncode(data));
+          body: json.encode(data));
+      print(data);
       print(response.body);
       if (response.statusCode == 200) {
         return true;

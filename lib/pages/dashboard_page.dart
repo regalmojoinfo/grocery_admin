@@ -364,14 +364,6 @@ class _DashboardPageState extends State<DashboardPage>
             child: Material(
               child: InkWell(
                 splashColor: Colors.blue.withOpacity(0.3),
-                // onTap: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => NewMessagesScreen(),
-                //     ),
-                //   );
-                // },
                 child: Container(
                   padding: const EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
