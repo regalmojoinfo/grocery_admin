@@ -95,8 +95,10 @@ class UserDataRepository extends BaseRepository {
   Future<bool> editProduct(Map<dynamic, dynamic> product) =>
       userDataProvider.editProduct(product);
 
-  Future<bool> addNewCategory(Map<dynamic, dynamic> category) =>
-      userDataProvider.addNewCategory(category);
+  Future<bool> addNewCategory(
+          {dynamic catImage, String mainCat, String subCat}) =>
+      userDataProvider.addNewCategory(
+          catImage: catImage, mainCat: mainCat, subCat: subCat);
 
   Future<bool> editCategory(Map<dynamic, dynamic> category) =>
       userDataProvider.editCategory(category);

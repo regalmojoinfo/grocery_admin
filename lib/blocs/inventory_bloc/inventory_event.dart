@@ -3,13 +3,13 @@ part of 'inventory_bloc.dart';
 @immutable
 abstract class InventoryEvent {}
 
-class GetInventoryAnalyticsEvent extends InventoryEvent{
+class GetInventoryAnalyticsEvent extends InventoryEvent {
   @override
   String toString() => 'GetInventoryAnalyticsEvent';
 }
 
-class UpdateInventoryAnalyticsEvent extends InventoryEvent{
-final  InventoryAnalytics inventoryAnalytics;
+class UpdateInventoryAnalyticsEvent extends InventoryEvent {
+  final InventoryAnalytics inventoryAnalytics;
 
   UpdateInventoryAnalyticsEvent(this.inventoryAnalytics);
   @override
@@ -22,7 +22,7 @@ class GetLowInventoryProductsEvent extends InventoryEvent {
 }
 
 class UpdateGetLowInventoryProductsEvent extends InventoryEvent {
-  final List<Product > lowInventoryProducts;
+  final List<Product> lowInventoryProducts;
 
   UpdateGetLowInventoryProductsEvent(this.lowInventoryProducts);
 
@@ -56,25 +56,30 @@ class UpdateLowInventoryProductEvent extends InventoryEvent {
   String toString() => 'UpdateLowInventoryProductEvent';
 }
 
-class AddNewCategoryEvent extends InventoryEvent{
-  final Map<dynamic,dynamic> category;
+// ignore: must_be_immutable
+class AddNewCategoryEvent extends InventoryEvent {
+  Map category;
+  String mainCat;
+  String subCat;
+  String imageCat;
 
-  AddNewCategoryEvent(this.category);
-    @override
+  AddNewCategoryEvent({this.category, this.imageCat, this.mainCat, this.subCat});
+  @override
   String toString() => 'AddNewCategoryEvent';
 }
 
-class EditCategoryEvent extends InventoryEvent{
-  final Map<dynamic,dynamic> category;
+class EditCategoryEvent extends InventoryEvent {
+  final Map<dynamic, dynamic> category;
 
   EditCategoryEvent(this.category);
-    @override
+  @override
   String toString() => 'EditCategoryEvent';
 }
-class DeleteCategoryEvent extends InventoryEvent{
+
+class DeleteCategoryEvent extends InventoryEvent {
   final String categoryId;
 
   DeleteCategoryEvent(this.categoryId);
-    @override
+  @override
   String toString() => 'DeleteCategoryEvent';
 }

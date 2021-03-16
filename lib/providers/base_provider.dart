@@ -80,7 +80,7 @@ abstract class BaseUserDataProvider extends BaseProvider {
 
   Future<bool> editProduct(Map<dynamic, dynamic> product);
 
-  Future<bool> addNewCategory(Map<dynamic, dynamic> category);
+  Future<bool> addNewCategory({String mainCat, String catImage, String subCat});
 
   Future<bool> editCategory(Map<dynamic, dynamic> category);
 

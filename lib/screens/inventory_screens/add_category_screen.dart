@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:grocery_admin/blocs/inventory_bloc/all_categories_bloc.dart';
 import 'package:grocery_admin/blocs/inventory_bloc/inventory_bloc.dart';
+import 'package:grocery_admin/user.dart';
 import 'package:grocery_admin/widgets/dialogs/add_sub_category_dialog.dart';
 import 'package:grocery_admin/widgets/dialogs/processing_dialog.dart';
 import 'package:grocery_admin/widgets/dialogs/product_added_dialog.dart';
@@ -26,6 +27,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
 
   AllCategoriesBloc allCategoriesBloc;
   bool isAdding;
+  String categoryName = "";
 
   @override
   void initState() {
@@ -93,9 +95,10 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
       setState(() {
         image = croppedFile;
       });
+      print(image.toString());
     } else {
       //not croppped
-
+      print("not cropped");
     }
   }
 
@@ -117,18 +120,25 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
       });
     }
 
-    print(subCategories);
+    print(subCategoryName);
   }
 
   addCategory() {
+    print(subCategories.toString());
+    print(image);
+    print(categoryName);
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
       if (image != null) {
-        categoryMap.putIfAbsent('profileImage', () => image);
+        categoryMap.putIfAbsent('profileImage', () => image.toString());
         categoryMap.putIfAbsent('subCategories', () => subCategories);
 
-        allCategoriesBloc.add(AddNewCategoryEvent(categoryMap));
+        allCategoriesBloc.add(AddNewCategoryEvent(
+            category: categoryMap,
+            imageCat: image.toString(),
+            mainCat: categoryName,
+            subCat: subCategories.toString()));
         isAdding = true;
       } else {
         showSnack('Please fill all the details!', context);
@@ -283,6 +293,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           return null;
                         },
                         onSaved: (val) {
+                          categoryName = val;
                           categoryMap.update(
                             'categoryName',
                             (oldVal) => val.trim(),

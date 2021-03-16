@@ -59,17 +59,18 @@ class UserDataProvider extends BaseUserDataProvider {
   Category cat = Category();
 
   @override
-  Future<bool> addNewCategory(Map category) async {
+  Future<bool> addNewCategory(
+      {String mainCat, String catImage, String subCat}) async {
     Map data = {
       "useModel": "ProductCategory",
       "useWhere": {"status": 1},
       "useSort": "categoryName",
       "useMessage": "Category Info",
       "useData": {
-        "categoryName": "pepsi",
-        "profileImage": "image124.jpg",
+        "categoryName": mainCat,
+        "profileImage": catImage.toString(),
         "subCategory": [
-          {"name": "pepsi"}
+          {"name": subCat}
         ]
       }
     };
