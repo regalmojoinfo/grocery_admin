@@ -35,7 +35,8 @@ class AllCategoriesBloc extends Bloc<InventoryEvent, InventoryState> {
       yield* mapUpdateGetAllCategoriesEventToState(event.categories);
     }
     if (event is AddNewCategoryEvent) {
-      yield* mapAddNewCategoryEventToState(event.category);
+      yield* mapAddNewCategoryEventToState(
+          event.category, event.mainCat, event.imageCat, event.subCat);
     }
     if (event is EditCategoryEvent) {
       yield* mapEditCategoryEventToState(event.category);
@@ -66,10 +67,14 @@ class AllCategoriesBloc extends Bloc<InventoryEvent, InventoryState> {
   }
 
   Stream<InventoryState> mapAddNewCategoryEventToState(
-      Map<dynamic, dynamic> category) async* {
+      Map<dynamic, dynamic> category,
+      String mainCat,
+      String catImage,
+      String subCat) async* {
     yield AddNewCategoryInProgressState();
     try {
-      bool isAdded = await userDataRepository.addNewCategory(category);
+      bool isAdded = await userDataRepository.addNewCategory(
+          catImage: catImage, mainCat: mainCat, subCat: subCat);
       if (isAdded) {
         yield AddNewCategoryCompletedState();
       } else {

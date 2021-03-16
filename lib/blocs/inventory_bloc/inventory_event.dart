@@ -63,7 +63,8 @@ class AddNewCategoryEvent extends InventoryEvent {
   String subCat;
   String imageCat;
 
-  AddNewCategoryEvent({this.category, this.imageCat, this.mainCat, this.subCat});
+  AddNewCategoryEvent(
+      {this.category, this.mainCat, this.imageCat, this.subCat});
   @override
   String toString() => 'AddNewCategoryEvent';
 }
