@@ -56,7 +56,6 @@ class UserDataProvider extends BaseUserDataProvider {
   String baseurl = "https://regalmojo.in";
   @override
   void dispose() {}
-  Category cat = Category();
 
   @override
   Future<bool> addNewCategory(
