@@ -19,7 +19,7 @@ class AllCategoriesScreen extends StatefulWidget {
 class _AllCategoriesScreenState extends State<AllCategoriesScreen>
     with SingleTickerProviderStateMixin {
   AllCategoriesBloc allCategoriesBloc;
-  List<Category> categories;
+  List<Data> categories;
 
   @override
   void initState() {
