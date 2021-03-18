@@ -50,7 +50,7 @@ class GetAllCategoriesFailedState extends InventoryState {
 }
 
 class GetAllCategoriesCompletedState extends InventoryState {
-  final List<Category> categories;
+  final List<Data> categories;
 
   GetAllCategoriesCompletedState({
     @required this.categories,

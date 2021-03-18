@@ -96,6 +96,35 @@ class UserDataProvider extends BaseUserDataProvider {
       return false;
     }
   }
+
+  @override
+  Future getAllCategories() async {
+    String url = "$baseurl/groceryServer/api/common/getAll";
+    Map data = {
+      "useModel": "ProductCategory",
+      "useWhere": {"status": 1},
+      "useSort": "categoryName",
+      "useMessage": "Category Info"
+    };
+    var body = json.encode(data);
+    try {
+      final res = await http.post(url,
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization':
+                "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQwMjA0YjQ3MjMwMWZjOTVlMzM4OGYiLCJsb2dpblR5cGUiOiJBZG1pbiIsIm5ld0RiTmFtZSI6Imdyb2NlcnktcmVnYWwiLCJpYXQiOjE2MTU0NDQ4NDF9.lBSLR9dI7CJ-5oVdJwJ8IxVMcDhBS88pKdnHiWSf5zI"
+          },
+          body: body);
+      print(res.body);
+      if (res.statusCode == 200) {
+        var data = json.decode(res.body);
+        final category = Category.fromJson(data);
+        return category.data;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 //   @override
 //   Future<bool> addNewCategory(Map category) async {
 //     try {
@@ -122,6 +151,7 @@ class UserDataProvider extends BaseUserDataProvider {
 //       return false;
 //     }
 //   }
+
   @override
   Future<bool> addNewProduct(Map product) async {
     String url = "https://regalmojo.in/groceryServer/api/common/insertOne";
@@ -263,12 +293,6 @@ class UserDataProvider extends BaseUserDataProvider {
   @override
   Future<Map> getAllBanners() {
     // TODO: implement getAllBanners
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<Category>> getAllCategories() {
-    // TODO: implement getAllCategories
     throw UnimplementedError();
   }
 

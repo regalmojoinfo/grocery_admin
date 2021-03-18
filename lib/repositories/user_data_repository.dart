@@ -70,8 +70,7 @@ class UserDataRepository extends BaseRepository {
   Future<bool> updateLowInventoryProduct(String id, int quantity) =>
       userDataProvider.updateLowInventoryProduct(id, quantity);
 
-  Future<List<Category>> getAllCategories() =>
-      userDataProvider.getAllCategories();
+  Future getAllCategories() => userDataProvider.getAllCategories();
 
   Stream<ProductAnalytics> getProductAnalytics() =>
       userDataProvider.getProductAnalytics();

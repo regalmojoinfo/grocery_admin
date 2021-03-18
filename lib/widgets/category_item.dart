@@ -12,7 +12,7 @@ import 'package:grocery_admin/screens/inventory_screens/edit_category_screen.dar
 
 class CategoryItem extends StatefulWidget {
   final Size size;
-  final Category category;
+  final Data category;
 
   const CategoryItem({
     @required this.size,

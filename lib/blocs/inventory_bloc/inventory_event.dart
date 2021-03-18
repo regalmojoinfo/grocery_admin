@@ -36,7 +36,7 @@ class GetAllCategoriesEvent extends InventoryEvent {
 }
 
 class UpdateGetAllCategoriesEvent extends InventoryEvent {
-  final List<Category> categories;
+  final List<Data> categories;
 
   UpdateGetAllCategoriesEvent(this.categories);
   @override

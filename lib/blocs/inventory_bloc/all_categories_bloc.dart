@@ -47,14 +47,14 @@ class AllCategoriesBloc extends Bloc<InventoryEvent, InventoryState> {
   }
 
   Stream<InventoryState> mapUpdateGetAllCategoriesEventToState(
-      List<Category> categories) async* {
+      List<Data> categories) async* {
     yield GetAllCategoriesCompletedState(categories: categories);
   }
 
   Stream<InventoryState> mapGetAllCategoriesEventToState() async* {
     yield GetAllCategoriesInProgressState();
     try {
-      List<Category> categories = await userDataRepository.getAllCategories();
+      List<Data> categories = await userDataRepository.getAllCategories();
       if (categories != null) {
         yield GetAllCategoriesCompletedState(categories: categories);
       } else {

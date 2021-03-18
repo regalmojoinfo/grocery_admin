@@ -17,7 +17,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditCategoryScreen extends StatefulWidget {
-  final Category category;
+  final Data category;
 
   const EditCategoryScreen({this.category});
   @override

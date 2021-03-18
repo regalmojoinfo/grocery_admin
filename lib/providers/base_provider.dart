@@ -62,7 +62,7 @@ abstract class BaseUserDataProvider extends BaseProvider {
 
   Future<bool> updateLowInventoryProduct(String id, int quantity);
 
-  Future<List<Category>> getAllCategories();
+  Future getAllCategories();
 
   Stream<ProductAnalytics> getProductAnalytics();
 

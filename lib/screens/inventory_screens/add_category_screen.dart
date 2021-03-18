@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:grocery_admin/blocs/inventory_bloc/all_categories_bloc.dart';
 import 'package:grocery_admin/blocs/inventory_bloc/inventory_bloc.dart';
-import 'package:grocery_admin/user.dart';
+//import 'package:grocery_admin/user.dart';
 import 'package:grocery_admin/widgets/dialogs/add_sub_category_dialog.dart';
 import 'package:grocery_admin/widgets/dialogs/processing_dialog.dart';
 import 'package:grocery_admin/widgets/dialogs/product_added_dialog.dart';
@@ -48,7 +48,8 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
         //failed
         if (isAdding) {
           Navigator.pop(context);
-          showSnack('Failed to add the category!', context);
+          showSnack('Category Info Already Exists', context);
+          //showSnack('Failed to add the category!', context);
           isAdding = false;
         }
       }
